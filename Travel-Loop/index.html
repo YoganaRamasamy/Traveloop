@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Traveloop - Smart Travel Planner</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f3f4f6;
+overflow-x:hidden;
+}
+
+.gradient{
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#06b6d4);
+}
+
+.card{
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="min-h-screen gradient flex items-center justify-center p-6">
+
+<div class="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full grid md:grid-cols-2">
+
+<!-- LEFT -->
+
+<div class="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-14 flex flex-col justify-center">
+
+<h1 class="text-6xl font-bold mb-6">
+Traveloop
+</h1>
+
+<p class="text-xl leading-9">
+AI powered smart travel planner for modern travelers.
+Create itineraries, explore destinations, manage budgets,
+and enjoy unforgettable journeys.
+</p>
+
+<div class="mt-10 space-y-4 text-lg">
+
+<div>✈ AI Travel Planning</div>
+<div>🌍 Explore Global Destinations</div>
+<div>💰 Budget Management</div>
+<div>📍 Smart Recommendations</div>
+<div>🧳 Packing Checklist</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="p-12">
+
+<h2 class="text-4xl font-bold text-gray-800 mb-2">
+Welcome Back
+</h2>
+
+<p class="text-gray-500 mb-8">
+Login to continue your travel journey
+</p>
+
+<div class="space-y-5">
+
+<input
+id="email"
+type="email"
+placeholder="Email Address"
+class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+/>
+
+<div class="relative">
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+/>
+
+<button
+onclick="togglePassword()"
+class="absolute right-4 top-4"
+>
+👁
+</button>
+
+</div>
+
+<div class="flex justify-between text-sm">
+
+<label class="flex items-center gap-2">
+<input type="checkbox">
+Remember me
+</label>
+
+<a href="#" class="text-blue-600">
+Forgot Password?
+</a>
+
+</div>
+
+<button
+onclick="login()"
+class="w-full bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl font-semibold"
+>
+Login
+</button>
+
+<div class="text-center text-gray-500">
+OR CONTINUE WITH
+</div>
+
+<div class="grid grid-cols-3 gap-4">
+
+<button class="border p-3 rounded-xl hover:bg-gray-100">
+Google
+</button>
+
+<button class="border p-3 rounded-xl hover:bg-gray-100">
+Facebook
+</button>
+
+<button class="border p-3 rounded-xl hover:bg-gray-100">
+Apple
+</button>
+
+</div>
+
+<p class="text-center mt-6">
+
+Don't have an account?
+
+<a href="#" class="text-blue-600 font-bold">
+Sign Up
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="hidden">
+
+<!-- NAVBAR -->
+
+<nav class="bg-white shadow-lg p-5 flex justify-between items-center sticky top-0 z-50">
+
+<h1 class="text-3xl font-bold text-blue-700">
+Traveloop
+</h1>
+
+<div class="hidden md:flex gap-8 font-semibold">
+
+<a href="#">Dashboard</a>
+<a href="#">Trips</a>
+<a href="#">Explore</a>
+<a href="#">Budget</a>
+<a href="#">Journal</a>
+<a href="#">Profile</a>
+
+</div>
+
+<button
+onclick="logout()"
+class="bg-red-500 text-white px-5 py-2 rounded-xl"
+>
+Logout
+</button>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="gradient text-white py-24 px-8">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<h1 class="text-6xl font-bold leading-tight mb-6">
+Explore The World Smartly
+</h1>
+
+<p class="text-xl leading-9">
+Plan dream vacations with AI assistance,
+track expenses, discover attractions,
+and manage your complete travel experience.
+</p>
+
+<button class="mt-8 bg-white text-blue-700 px-8 py-4 rounded-xl font-bold">
+Start New Journey
+</button>
+
+</div>
+
+<div>
+
+<img
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+class="rounded-3xl shadow-2xl"
+/>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="p-10">
+
+<div class="grid md:grid-cols-4 gap-6">
+
+<div class="bg-white p-8 rounded-3xl shadow-xl text-center card">
+
+<h1 class="text-5xl font-bold text-blue-600">
+120+
+</h1>
+
+<p class="mt-3 text-gray-500">
+Trips Planned
+</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-xl text-center card">
+
+<h1 class="text-5xl font-bold text-green-600">
+45
+</h1>
+
+<p class="mt-3 text-gray-500">
+Countries Explored
+</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-xl text-center card">
+
+<h1 class="text-5xl font-bold text-pink-600">
+12K
+</h1>
+
+<p class="mt-3 text-gray-500">
+Happy Travelers
+</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-xl text-center card">
+
+<h1 class="text-5xl font-bold text-yellow-500">
+4.9
+</h1>
+
+<p class="mt-3 text-gray-500">
+Average Ratings
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="p-10">
+
+<h2 class="text-5xl font-bold text-center mb-14">
+Amazing Features
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="bg-white p-8 rounded-3xl shadow-xl card">
+
+<div class="text-6xl mb-5">
+✈
+</div>
+
+<h3 class="text-3xl font-bold mb-4">
+Trip Planner
+</h3>
+
+<p class="text-gray-600 leading-8">
+Generate AI powered travel itineraries,
+manage schedules, and optimize travel routes.
+</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-xl card">
+
+<div class="text-6xl mb-5">
+💰
+</div>
+
+<h3 class="text-3xl font-bold mb-4">
+Expense Tracker
+</h3>
+
+<p class="text-gray-600 leading-8">
+Track your spending, set budgets,
+and analyze travel expenses easily.
+</p>
+
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-xl card">
+
+<div class="text-6xl mb-5">
+🌍
+</div>
+
+<h3 class="text-3xl font-bold mb-4">
+Explore Places
+</h3>
+
+<p class="text-gray-600 leading-8">
+Discover trending destinations,
+local attractions, and hidden gems.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CREATE TRIP -->
+
+<section class="bg-white p-10">
+
+<div class="max-w-5xl mx-auto">
+
+<h2 class="text-5xl font-bold text-center mb-10">
+Create New Trip
+</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<input
+type="text"
+placeholder="Destination"
+class="p-4 border rounded-xl"
+/>
+
+<input
+type="date"
+class="p-4 border rounded-xl"
+/>
+
+<input
+type="number"
+placeholder="Budget"
+class="p-4 border rounded-xl"
+/>
+
+<select class="p-4 border rounded-xl">
+
+<option>Solo Trip</option>
+<option>Family Trip</option>
+<option>Friends Trip</option>
+<option>Business Trip</option>
+
+</select>
+
+</div>
+
+<textarea
+placeholder="Trip Notes..."
+class="w-full mt-6 p-5 border rounded-xl h-40"
+></textarea>
+
+<button class="mt-6 bg-blue-600 text-white px-8 py-4 rounded-xl">
+Save Trip
+</button>
+
+</div>
+
+</section>
+
+<!-- DESTINATIONS -->
+
+<section class="p-10">
+
+<h2 class="text-5xl font-bold text-center mb-14">
+Trending Destinations
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="bg-white rounded-3xl overflow-hidden shadow-xl card">
+
+<img
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+class="h-72 w-full object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-3xl font-bold">
+Maldives
+</h3>
+
+<p class="text-gray-600 mt-4 leading-8">
+Crystal clear beaches, luxury resorts,
+water villas and romantic sunsets.
+</p>
+
+</div>
+
+</div>
+
+<div class="bg-white rounded-3xl overflow-hidden shadow-xl card">
+
+<img
+src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+class="h-72 w-full object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-3xl font-bold">
+Paris
+</h3>
+
+<p class="text-gray-600 mt-4 leading-8">
+Explore iconic attractions,
+fashion streets and beautiful cafes.
+</p>
+
+</div>
+
+</div>
+
+<div class="bg-white rounded-3xl overflow-hidden shadow-xl card">
+
+<img
+src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963"
+class="h-72 w-full object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-3xl font-bold">
+Tokyo
+</h3>
+
+<p class="text-gray-600 mt-4 leading-8">
+Experience Japanese culture,
+technology and delicious food.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BUDGET TRACKER -->
+
+<section class="bg-white p-10">
+
+<h2 class="text-5xl font-bold text-center mb-14">
+Travel Budget Overview
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="bg-blue-50 p-8 rounded-3xl">
+
+<h3 class="text-3xl font-bold mb-4">
+Accommodation
+</h3>
+
+<p class="text-5xl font-bold text-blue-600">
+₹25,000
+</p>
+
+</div>
+
+<div class="bg-green-50 p-8 rounded-3xl">
+
+<h3 class="text-3xl font-bold mb-4">
+Transport
+</h3>
+
+<p class="text-5xl font-bold text-green-600">
+₹15,000
+</p>
+
+</div>
+
+<div class="bg-pink-50 p-8 rounded-3xl">
+
+<h3 class="text-3xl font-bold mb-4">
+Food & Activities
+</h3>
+
+<p class="text-5xl font-bold text-pink-600">
+₹10,000
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- JOURNAL -->
+
+<section class="p-10">
+
+<h2 class="text-5xl font-bold text-center mb-14">
+Travel Journal
+</h2>
+
+<div class="bg-white rounded-3xl shadow-xl p-10 max-w-5xl mx-auto">
+
+<textarea
+placeholder="Write your travel memories..."
+class="w-full h-52 border rounded-2xl p-5"
+></textarea>
+
+<button class="mt-6 bg-blue-600 text-white px-8 py-4 rounded-xl">
+Save Journal
+</button>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-gray-900 text-white p-14 mt-10">
+
+<div class="grid md:grid-cols-4 gap-10">
+
+<div>
+
+<h2 class="text-3xl font-bold mb-5">
+Traveloop
+</h2>
+
+<p class="text-gray-400 leading-8">
+AI powered travel planning platform
+for smarter and unforgettable journeys.
+</p>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-bold mb-5">
+Quick Links
+</h3>
+
+<div class="space-y-3 text-gray-400">
+
+<div>Dashboard</div>
+<div>Trips</div>
+<div>Explore</div>
+<div>Budget</div>
+
+</div>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-bold mb-5">
+Services
+</h3>
+
+<div class="space-y-3 text-gray-400">
+
+<div>Flights</div>
+<div>Hotels</div>
+<div>Tour Guides</div>
+<div>Travel Insurance</div>
+
+</div>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-bold mb-5">
+Contact
+</h3>
+
+<div class="space-y-3 text-gray-400">
+
+<div>support@traveloop.com</div>
+<div>+91 9876543210</div>
+<div>India</div>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let password=document.getElementById("password");
+
+if(password.type==="password"){
+password.type="text";
+}
+else{
+password.type="password";
+}
+
+}
+
+function login(){
+
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+
+if(email==="" || password===""){
+alert("Please fill all fields");
+return;
+}
+
+if(!email.includes("@")){
+alert("Enter valid email");
+return;
+}
+
+if(password.length<6){
+alert("Password must contain minimum 6 characters");
+return;
+}
+
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("dashboard").classList.remove("hidden");
+
+}
+
+function logout(){
+
+document.getElementById("dashboard").classList.add("hidden");
+document.getElementById("loginPage").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
